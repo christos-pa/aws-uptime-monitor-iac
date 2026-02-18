@@ -82,10 +82,10 @@ terraform destroy \
 
 - Region: `eu-west-2`
 - Terraform: `1.14.x`
+```
 
----
 
 ## Why I Built This
 
 This project was built as part of my DevOps / Cloud engineering portfolio work, focusing on modular Terraform design, remote state handling, and automated failure detection in AWS.
-
+---
