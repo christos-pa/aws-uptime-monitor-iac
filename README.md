@@ -21,6 +21,10 @@ infra/       # VPC, EC2, EIP, SNS, Lambda, EventBridge
 docs/        # screenshots used in this README
 ```
 
+The `bootstrap/` folder creates the S3 bucket and DynamoDB table that Terraform uses to store its state file remotely. This means multiple people (or CI/CD pipelines) can work on the same infrastructure without overwriting each other's changes. The DynamoDB table handles locking so two `terraform apply` commands can't run at the same time and corrupt the state.
+
+The `infra/` folder contains the actual monitoring stack — the VPC, EC2 instance, Lambda function, and everything else that makes the uptime monitor work.
+
 ## Demo evidence
 
 ### Web target online
@@ -49,6 +53,8 @@ terraform init
 terraform apply -var="name_prefix=uptime-iac-yourname"
 ```
 
+This step only needs to run once. It creates the S3 bucket and DynamoDB table where Terraform will store its state. Once this exists, you can safely run `terraform apply` from anywhere (or from CI/CD) without worrying about conflicts.
+
 ### 2) Deploy infrastructure + monitoring
 
 ```bash
@@ -59,6 +65,8 @@ terraform apply \
   -var="alert_email=you@example.com" \
   -var="check_url=http://<ELASTIC_IP>"
 ```
+
+**Note:** You'll need to run this in two passes. The first `apply` creates the EC2 instance and Elastic IP. Grab the IP from the output, then run `apply` again with the full `check_url` so the Lambda function knows what to monitor.
 
 ## Destroy
 
