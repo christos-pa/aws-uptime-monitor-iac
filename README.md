@@ -82,7 +82,7 @@ terraform destroy \
 
 - Region: `eu-west-2`
 - Terraform: `1.14.x`
-```
+
 
 
 ## Why I Built This
