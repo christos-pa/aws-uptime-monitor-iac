@@ -1,7 +1,7 @@
 # aws-uptime-monitor-iac
 
-Production-style AWS uptime monitor built with Terraform (IaC).  
-It provisions a web target (EC2 + Elastic IP) and an automated monitoring pipeline (Lambda + EventBridge + SNS) with CloudWatch logs and remote Terraform state.
+Production-style AWS uptime monitor built using Terraform (Infrastructure as Code).
+The project provisions a web target (EC2 + Elastic IP) and a fully automated monitoring pipeline (Lambda + EventBridge + SNS), including CloudWatch logging and remote Terraform state management.
 
 ## Architecture
 
@@ -82,3 +82,10 @@ terraform destroy \
 
 - Region: `eu-west-2`
 - Terraform: `1.14.x`
+
+---
+
+## Why I Built This
+
+This project was built as part of my DevOps / Cloud engineering portfolio work, focusing on modular Terraform design, remote state handling, and automated failure detection in AWS.
+
